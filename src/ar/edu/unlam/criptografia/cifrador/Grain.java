@@ -34,25 +34,25 @@ public class Grain {
 		return xored;
 	}
 
-	private byte[] toByteArray(short[] virgin) {
-		byte[] chad = new byte[virgin.length / 8];
-		for (int i = 0; i < (virgin.length / 8); i++) {
-			chad[i] = (byte) (virgin[i * 8] * 128 + virgin[i * 8 + 1] * 64 + virgin[i * 8 + 2] * 32 + virgin[i * 8 + 3] * 16
-					+ virgin[i * 8 + 4] * 8 + virgin[i * 8 + 5] * 4 + virgin[i * 8 + 6] * 2 + virgin[i * 8 + 7]);
+	private byte[] toByteArray(short[] s) {
+		byte[] b = new byte[s.length / 8];
+		for (int i = 0; i < (s.length / 8); i++) {
+			b[i] = (byte) (s[i * 8] * 128 + s[i * 8 + 1] * 64 + s[i * 8 + 2] * 32 + s[i * 8 + 3] * 16
+					+ s[i * 8 + 4] * 8 + s[i * 8 + 5] * 4 + s[i * 8 + 6] * 2 + s[i * 8 + 7]);
 		}
-		return chad;
+		return b;
 	}
 
-	private short[] toShortArray(byte[] chad) {
-		short[] virgin = new short[chad.length * 8];
-		for (int i = 0; i < chad.length; i++) {
-			byte aux = chad[i];
+	private short[] toShortArray(byte[] b) {
+		short[] s = new short[b.length * 8];
+		for (int i = 0; i < b.length; i++) {
+			byte aux = b[i];
 			for (int j = 7; j >= 0; j--) {
-				virgin[i * 8 + j] = (short) (aux % 2);
+				s[i * 8 + j] = (short) (aux % 2);
 				aux = (byte) (aux / 2);
 			}
 		}
-		return virgin;
+		return s;
 	}
 
 	private byte[] getHeader(byte[] textoPlano) {
